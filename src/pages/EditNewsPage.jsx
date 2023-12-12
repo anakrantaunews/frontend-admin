@@ -124,7 +124,7 @@ function EditNewsPage() {
                 className="outline-none text-sm border border-gray-500 px-3 py-2 rounded-xl"
                 type="file"
                 onChange={handleFileChange} // Use the new handler
-                required
+                
               />
             </div>
             <div className="flex flex-col gap-3">
@@ -135,6 +135,7 @@ function EditNewsPage() {
                 name="name"
                 className="outline-none text-sm border border-gray-500 px-3 py-2 rounded-xl"
                 type="text"
+                required
                 placeholder="Masukkan Judul Berita"
               />
             </div>
