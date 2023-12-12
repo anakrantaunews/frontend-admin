@@ -47,7 +47,9 @@ function EditNewsPage() {
       const formData = new FormData();
       formData.append("name", form.name);
       formData.append("description", form.description);
-      formData.append("thumbnail", form.thumbnail);
+      if (!form.thumbnail) {
+        formData.append("thumbnail", form.thumbnail);
+      }
       const response = await axios.put(
         `${config.urlBackend}/api/posts/${id}`,
         formData,
@@ -133,7 +135,6 @@ function EditNewsPage() {
                 name="name"
                 className="outline-none text-sm border border-gray-500 px-3 py-2 rounded-xl"
                 type="text"
-                required
                 placeholder="Masukkan Judul Berita"
               />
             </div>
