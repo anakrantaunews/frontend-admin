@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavBar from "../component/NavBar";
 import HeroHomePage from "../component/HeroHomePage";
 import Footer from "../component/Footer";
 import Card from "../component/Card";
 import { Group, Post } from "iconoir-react";
-import {Link} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function HomePage() {
+  const token = Cookies.get("token");
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    } else {
+      return;
+    }
+  }, []);
   return (
     <>
       <NavBar />
@@ -39,7 +49,7 @@ function HomePage() {
             </p>
             <div className="flex justify-end">
               <Link to={"/news"}>
-                <button className="border hover:bg-purple-700 duration-300 ease-in-out bg-purple-500 text-white border-black px-3 py-2 rounded-xl mt-10">
+                <button className="border hover:bg-blue-700 duration-300 ease-in-out bg-blue-500 text-white border-black px-3 py-2 rounded-xl mt-10">
                   Cek Sekarang {">"}
                 </button>
               </Link>

@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../component/Footer";
+import axios from "axios";
+import config from "../config";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  const token = Cookies.get("token")
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -14,26 +20,46 @@ function LoginPage() {
   };
 
   const handleLogin = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      alert("login")
+      const response = await axios.post(
+        `${config.urlBackend}/api/auth/signin-admin`,
+        { email: form.email, password: form.password }
+      );
+
+      Cookies.set("token", response.data.data)
+      // console.log(response.data.data);
+      alert(response.data.message)
+      navigate("/")
     } catch (error) {
-      console.log(error)
+      alert(error.response.data.msg)
+      // console.log(error);
     }
-  }
+  };
+
+  useEffect(() => {
+    if(token){
+      navigate("/")
+    }else{
+      return 
+    }
+  },[])
   return (
     <>
       <header className="flex flex-col gap-5 mt-10">
-        <h1 className="text-3xl text-center font-bold">Logi</h1>
+        <h1 className="text-3xl text-center font-bold">Login</h1>
         <h1 className="text-2xl text-center font-semibold">
           {" "}
-          ANAKRANTAUNews <br />
+          ANAKRANTAU News <br />
           Admin Dashboard
         </h1>
       </header>
       <main className="px-8 md:px-48 lg:px-80 py-6 mt-20">
         <section>
-          <form onSubmit={handleLogin} className="flex flex-col gap-10 border shadow-xl border-black rounded-xl px-8 py-6">
+          <form
+            onSubmit={handleLogin}
+            className="flex flex-col gap-10 border shadow-xl border-black rounded-xl px-8 py-6"
+          >
             <div className="flex flex-col gap-3">
               <label className="text-sm font-medium">Email : </label>
               <input
@@ -58,7 +84,10 @@ function LoginPage() {
                 placeholder="*********"
               />
             </div>
-            <button type="submit" className="text-sm bg-green-500 hover:bg-green-700 text-white py-2 px-3 rounded-xl">
+            <button
+              type="submit"
+              className="text-sm bg-green-500 hover:bg-green-700 text-white py-2 px-3 rounded-xl"
+            >
               Login
             </button>
           </form>

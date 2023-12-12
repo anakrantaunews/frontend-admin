@@ -1,14 +1,19 @@
 import { Menu, Xmark } from "iconoir-react";
+import Cookies from "js-cookie";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function NavBar() {
   const [showMenu, setShowMenu] = useState(false);
+  const handleLogout = () => {
+    Cookies.remove("token");
+    window.location.reload()
+  };
   return (
     <>
       <nav className="flex w-full justify-between py-2 px-3">
         <Link to={"/"} className="cursor-pointer">
-          <h1 className="font-bold">ANAKRANTAUNews</h1>
+          <h1 className="font-bold">ANAKRANTAU News</h1>
           <p className="text-sm">Admin Dashboard</p>
         </Link>
         <ul className="hidden md:flex flex-row gap-10 justify-center items-center">
@@ -20,7 +25,10 @@ function NavBar() {
           </li>
         </ul>
         <div className="hidden md:block">
-          <button className="text-sm border border-black py-2 px-3 rounded-xl bg-red-500 text-white hover:bg-red-700 duration-300 ease-in-out">
+          <button
+            onClick={handleLogout}
+            className="text-sm border border-black py-2 px-3 rounded-xl bg-red-500 text-white hover:bg-red-700 duration-300 ease-in-out"
+          >
             Logout
           </button>
         </div>
@@ -36,7 +44,7 @@ function NavBar() {
       <div
         className={`w-full transition-all duration-300 ${
           showMenu ? "flex md:hidden" : "hidden"
-        } flex-col absolute z-{99} top-0 h-screen bg-white`}
+        } flex-col fixed z-[100] top-0 h-screen bg-white`}
       >
         <div className="flex justify-end p-3">
           <button
@@ -59,6 +67,13 @@ function NavBar() {
           <li className="border border-black px-3 py-2 rounded-xl text-xl hover:underline">
             <Link to={"/news"}>News Management</Link>
           </li>
+
+          <button
+            onClick={handleLogout}
+            className="text-sm border border-black py-2 px-3 rounded-xl bg-red-500 text-white hover:bg-red-700 duration-300 ease-in-out"
+          >
+            Logout
+          </button>
         </ul>
       </div>
     </>
