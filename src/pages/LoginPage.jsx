@@ -24,7 +24,7 @@ function LoginPage() {
   return (
     <>
       <header className="flex flex-col gap-5 mt-10">
-        <h1 className="text-3xl text-center font-bold">Login</h1>
+        <h1 className="text-3xl text-center font-bold">Login </h1>
         <h1 className="text-2xl text-center font-semibold">
           {" "}
           ANAKRANTAUNews <br />
