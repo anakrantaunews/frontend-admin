@@ -47,7 +47,7 @@ function EditNewsPage() {
       const formData = new FormData();
       formData.append("name", form.name);
       formData.append("description", form.description);
-      if (!form.thumbnail) {
+      if (form.thumbnail) {
         formData.append("thumbnail", form.thumbnail);
       }
       const response = await axios.put(
