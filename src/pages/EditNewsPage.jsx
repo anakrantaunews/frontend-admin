@@ -61,7 +61,7 @@ function EditNewsPage() {
         }
       );
       alert(response.data.message);
-      navigate("/news");
+      window.location.href = "/news"
       // console.log("Response:", response.data);
     } catch (error) {
       // console.log(error)

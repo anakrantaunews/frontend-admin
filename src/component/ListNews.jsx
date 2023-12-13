@@ -14,6 +14,7 @@ function ListNews(props) {
         { headers: { Authorization: `Bearer ${Cookies.get("token")}` } }
       );
       alert("Success Delete News");
+      window.location.href="/news"
     } catch (error) {
       console.log(error);
       alert("Failed Delete News");

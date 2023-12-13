@@ -12,6 +12,7 @@ function ListUser(props) {
         { headers: { Authorization: `Bearer ${Cookies.get("token")}` } }
       );
       alert("Success Delete User")
+      window.location.href="/users"
     } catch (error) {
       console.log(error);
       alert("Failed Delete User");

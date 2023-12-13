@@ -17,9 +17,7 @@ function UsersPage() {
       const response = await axios.get(`${config.urlBackend}/api/users`);
       setUsers(response.data.data);
     };
-    setInterval(() => {
-      fetchAllUsers();
-    }, 5000);
+    fetchAllUsers();
   }, []);
 
   const handleSearch = (e) => {

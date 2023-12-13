@@ -56,7 +56,7 @@ function NavBar() {
         </div>
         <div className="flex justify-center">
           <Link to={"/"} className="cursor-pointer flex flex-col items-center">
-            <h1 className="text-2xl font-bold">ANAKRANTAUNews</h1>
+            <h1 className="text-2xl font-bold">ANAKRANTAU News</h1>
             <p className="text-xl">Admin Dashboard</p>
           </Link>
         </div>

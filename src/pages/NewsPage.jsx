@@ -18,9 +18,8 @@ function NewsPage() {
       // console.log(response.data.data)
       setNews(response.data.data);
     };
-    setInterval(() => {
-      fetchAllUsers();
-    }, 5000);
+    fetchAllUsers();
+    
   }, []);
 
   const handleSearch = (e) => {
